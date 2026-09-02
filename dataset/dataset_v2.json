@@ -1,0 +1,1557 @@
+[
+  {
+    "conversation_id": "conv_0001",
+    "scenario": "benign_smalltalk",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Hey, how was your day?"
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0002",
+    "scenario": "benign_lunch_plan",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Want to grab lunch tomorrow around noon?"
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0003",
+    "scenario": "benign_bank_visit",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I went to the bank yesterday to update my address."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0004",
+    "scenario": "benign_bank_reported_speech",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "The bank asked me to update my address."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0005",
+    "scenario": "benign_otp_mention",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I received an OTP from my bank yesterday."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0006",
+    "scenario": "benign_family_checkin",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Just calling to check in, everything okay at home?"
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "validation"
+  },
+  {
+    "conversation_id": "conv_0007",
+    "scenario": "benign_weather_chat",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "It's been raining all week here, how's the weather with you?"
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0008",
+    "scenario": "benign_finance_chat",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "My bank told me never to share my OTP with anyone."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0101",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Send me the OTP you just received."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0102",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Your account has been compromised. Tell me the OTP immediately."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "urgency_time_pressure",
+      "account_compromise_claim"
+    ],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0103",
+    "scenario": "lottery_fraud",
+    "scenario_family": "lottery",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Congratulations! You won a lottery. Send your bank details to claim the prize."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "lottery_prize_fraud",
+    "risk_signals": [
+      "lottery_prize_fraud",
+      "sensitive_information_request"
+    ],
+    "split": "train"
+  },
+  {
+    "conversation_id": "conv_0104",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is your bank's fraud department. Please provide your card number and CVV to secure your account."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request",
+      "bank_impersonation"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0105",
+    "scenario": "lottery_fraud",
+    "scenario_family": "lottery",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "You have won a cash prize. Transfer a small processing fee to claim it now."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "lottery_prize_fraud",
+    "risk_signals": [
+      "lottery_prize_fraud",
+      "payment_or_transfer_request",
+      "urgency_time_pressure"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0201",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "paraphrase",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Tell me the verification code that came to your phone."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0202",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "paraphrase",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Read the six-digit code you just received so I can restore your account."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "account_compromise_claim"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0203",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "paraphrase",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Read out the six-digit number you received."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0204",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "paraphrase",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Could you just read out the numbers displayed on the message that arrived on your handset?"
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0205",
+    "scenario": "lottery_fraud",
+    "scenario_family": "lottery",
+    "context_type": "paraphrase",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Great news, you're our lucky winner! Just forward your account details so we can release the reward."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "lottery_prize_fraud",
+    "risk_signals": [
+      "lottery_prize_fraud",
+      "sensitive_information_request"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0206",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "paraphrase",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I just need you to confirm the passcode your phone displayed a moment ago."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_0301",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "indirect",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I need the number from that SMS."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0302",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "indirect",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "You'll need to give me the digits from the message before I can complete this."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0303",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "indirect",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "The verification won't go through until I have those six digits."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0304",
+    "scenario": "otp_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "indirect",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Without that code from your phone, I'm afraid we can't move forward with unlocking your account."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "account_compromise_claim"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0305",
+    "scenario": "payment_indirect",
+    "scenario_family": "bank_otp",
+    "context_type": "indirect",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "It would really help if that transfer went through before the end of the day."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request",
+      "urgency_time_pressure"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0401",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Scammers often ask victims for OTPs."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0402",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I am researching banking scams and how criminals request passwords."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0403",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "My bank told me never to share my OTP."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0404",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I want to understand how OTP fraud works so I can teach my parents to avoid it."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0405",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "There was a documentary about lottery scams and how they trick elderly people."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0406",
+    "scenario": "hard_negative_meta",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "hard_negative",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Never give your PIN to anyone who calls claiming to be from the bank, that's rule number one."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "hard_negative_test"
+  },
+  {
+    "conversation_id": "conv_0501",
+    "scenario": "context_pair_educational",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "context_dependent",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I am researching banking fraud."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "How do scammers usually obtain OTPs?"
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "They often ask victims to read the six-digit code."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0502",
+    "scenario": "context_pair_live_attack",
+    "scenario_family": "bank_otp",
+    "context_type": "context_dependent",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I'm calling from your bank."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "Your account has been flagged."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "I need the six-digit code that just arrived."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "bank_impersonation",
+      "account_compromise_claim",
+      "otp_pin_password_request"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0601",
+    "scenario": "escalating_bank_impersonation",
+    "scenario_family": "bank_otp",
+    "context_type": "escalation",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I'm calling from your bank."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "There is a problem with your account."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "We need to verify your identity."
+      },
+      {
+        "turn_id": 4,
+        "speaker": "caller",
+        "text": "Tell me the OTP you just received."
+      },
+      {
+        "turn_id": 5,
+        "speaker": "caller",
+        "text": "Do it quickly or your account will be blocked."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "bank_impersonation",
+      "account_compromise_claim",
+      "otp_pin_password_request",
+      "urgency_time_pressure"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0602",
+    "scenario": "flat_benign_researcher",
+    "scenario_family": "benign_meta_discussion",
+    "context_type": "escalation",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I'm a security researcher."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "We are discussing examples of scams."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "Scammers ask victims for OTPs."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0603",
+    "scenario": "slow_build_lottery",
+    "scenario_family": "lottery",
+    "context_type": "escalation",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Hi, I have some good news for you today."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "You've been selected as a winner in our promotion."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "To claim it, I'll need your bank account details."
+      },
+      {
+        "turn_id": 4,
+        "speaker": "caller",
+        "text": "Please hurry, this offer expires in the next hour."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "lottery_prize_fraud",
+    "risk_signals": [
+      "lottery_prize_fraud",
+      "sensitive_information_request",
+      "urgency_time_pressure"
+    ],
+    "split": "context_test"
+  },
+  {
+    "conversation_id": "conv_0701",
+    "scenario": "urgency_variation_1",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Send the code now, we only have a few minutes before the session expires."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "urgency_time_pressure"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0702",
+    "scenario": "urgency_variation_2",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "There's no time to explain, just give me the verification number right away."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "urgency_time_pressure"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0801",
+    "scenario": "secrecy_variation_1",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Don't tell anyone about this call, just send me the code."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "secrecy_isolation_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0802",
+    "scenario": "secrecy_variation_2",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Keep this a secret from your family and give me the OTP."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "otp_pin_password_request",
+    "risk_signals": [
+      "otp_pin_password_request",
+      "secrecy_isolation_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0901",
+    "scenario": "police_impersonation",
+    "scenario_family": "police_impersonation",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is the police department. Verify your identity by providing your account number or you will be arrested."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "government_police_impersonation",
+    "risk_signals": [
+      "government_police_impersonation",
+      "threat_intimidation",
+      "sensitive_information_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_0902",
+    "scenario": "tax_authority_impersonation",
+    "scenario_family": "police_impersonation",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is the income tax department, there is a pending case against you. Pay the penalty now to avoid legal action."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "government_police_impersonation",
+    "risk_signals": [
+      "government_police_impersonation",
+      "threat_intimidation",
+      "payment_or_transfer_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1001",
+    "scenario": "threat_variation_1",
+    "scenario_family": "bank_otp",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "If you don't confirm the code now, your account will be permanently blocked."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "account_compromise_claim",
+    "risk_signals": [
+      "account_compromise_claim",
+      "urgency_time_pressure",
+      "otp_pin_password_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1101",
+    "scenario": "delivery_payment_fraud",
+    "scenario_family": "delivery_payment",
+    "context_type": "unseen_scenario",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is regarding your package delivery."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "There's a small customs fee that needs to be paid before we can deliver it."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "Please click the link and enter your card details to release the package."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "suspicious_link_action_request",
+    "risk_signals": [
+      "suspicious_link_action_request",
+      "payment_or_transfer_request",
+      "sensitive_information_request"
+    ],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1102",
+    "scenario": "employment_verification_scam",
+    "scenario_family": "employment_verification",
+    "context_type": "unseen_scenario",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Congratulations on being shortlisted for the position."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "To proceed, we need your bank details to set up payroll in advance."
+      },
+      {
+        "turn_id": 3,
+        "speaker": "caller",
+        "text": "Please send this today so we can confirm your offer."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request",
+      "urgency_time_pressure"
+    ],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1103",
+    "scenario": "account_recovery_manipulation",
+    "scenario_family": "account_recovery",
+    "context_type": "unseen_scenario",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "We noticed unusual login attempts on your account."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "To help you recover access, install this remote support app so I can check the settings."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "remote_access_request",
+    "risk_signals": [
+      "remote_access_request",
+      "account_compromise_claim"
+    ],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1104",
+    "scenario": "tech_support_scam",
+    "scenario_family": "tech_support",
+    "context_type": "unseen_scenario",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "We detected a virus on your computer from our monitoring center."
+      },
+      {
+        "turn_id": 2,
+        "speaker": "caller",
+        "text": "Please download AnyDesk so our technician can remove it remotely."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "remote_access_request",
+    "risk_signals": [
+      "remote_access_request"
+    ],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1105",
+    "scenario": "account_recovery_benign",
+    "scenario_family": "account_recovery",
+    "context_type": "unseen_scenario",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I forgot my password again and had to reset it myself through the app."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1106",
+    "scenario": "delivery_benign",
+    "scenario_family": "delivery_payment",
+    "context_type": "unseen_scenario",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Your package is out for delivery and should arrive by 5pm."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1201",
+    "scenario": "benign_link_share",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Here's the link to the article I mentioned earlier."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "validation"
+  },
+  {
+    "conversation_id": "conv_1202",
+    "scenario": "benign_software_help",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Could you help me install this app I downloaded for photo editing?"
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "validation"
+  },
+  {
+    "conversation_id": "conv_1203",
+    "scenario": "benign_payment_reminder",
+    "scenario_family": "benign_life",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Don't forget to transfer my share of the dinner bill whenever you get a chance."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "validation"
+  },
+  {
+    "conversation_id": "conv_1301",
+    "scenario": "investment_guarantee_scam",
+    "scenario_family": "investment_scam",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I can guarantee you a 40% return this month if you invest immediately. Just wire the funds to this account today."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request",
+      "urgency_time_pressure"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1302",
+    "scenario": "investment_urgency_scam",
+    "scenario_family": "investment_scam",
+    "context_type": "paraphrase",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is a limited-time investment opportunity, transfer your funds before the market closes tonight to lock in the gains."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request",
+      "urgency_time_pressure"
+    ],
+    "split": "paraphrase_test"
+  },
+  {
+    "conversation_id": "conv_1303",
+    "scenario": "investment_benign",
+    "scenario_family": "investment_scam",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "My financial advisor suggested I diversify into index funds this year."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1401",
+    "scenario": "refund_overcharge_scam",
+    "scenario_family": "refund_scam",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "We accidentally overcharged you. Share your card details so we can process the refund directly."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1402",
+    "scenario": "refund_transfer_scam",
+    "scenario_family": "refund_scam",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Transfer the money to this account so I can process your refund."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request"
+    ],
+    "split": "paraphrase_test",
+    "note": "semantic pair with conv_1203 benign 'transfer my share of the dinner bill' -- same verb, opposite intent, different benefit direction"
+  },
+  {
+    "conversation_id": "conv_1403",
+    "scenario": "refund_benign",
+    "scenario_family": "refund_scam",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Customer support processed my refund automatically to my original payment method."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1501",
+    "scenario": "identity_verification_scam",
+    "scenario_family": "identity_verification",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "For security we need you to confirm your full account number and PIN before we can verify your identity."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request",
+      "otp_pin_password_request"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1502",
+    "scenario": "identity_verification_benign",
+    "scenario_family": "identity_verification",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I verified my identity through the app's standard fingerprint login."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1503",
+    "scenario": "identity_verification_ambiguous_1",
+    "scenario_family": "identity_verification",
+    "context_type": "ambiguous",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "For verification, could you tell me the last four digits of your card?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request"
+    ],
+    "split": "caution_test",
+    "note": "genuinely ambiguous: partial-digit verification is a common legitimate customer-service pattern AND a common scam probe; insufficient context to resolve either way"
+  },
+  {
+    "conversation_id": "conv_1504",
+    "scenario": "identity_verification_ambiguous_2",
+    "scenario_family": "identity_verification",
+    "context_type": "ambiguous",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "We noticed some unusual activity, can you confirm your email address on file?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "account_compromise_claim",
+    "risk_signals": [
+      "account_compromise_claim"
+    ],
+    "split": "caution_test",
+    "note": "unusual-activity framing is scam-typical but the actual ask (confirm an email already on file) is low-sensitivity by itself"
+  },
+  {
+    "conversation_id": "conv_1601",
+    "scenario": "subscription_cancellation_threat",
+    "scenario_family": "subscription_manipulation",
+    "context_type": "standard",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Your subscription will be cancelled unless you provide your payment details right now to confirm renewal."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request",
+      "urgency_time_pressure",
+      "threat_intimidation"
+    ],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1602",
+    "scenario": "subscription_benign",
+    "scenario_family": "subscription_manipulation",
+    "context_type": "standard",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I updated my subscription payment method myself through the account settings page."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "test"
+  },
+  {
+    "conversation_id": "conv_1603",
+    "scenario": "subscription_ambiguous",
+    "scenario_family": "subscription_manipulation",
+    "context_type": "ambiguous",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Just to keep your subscription active, can you confirm the card ending in your account?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [],
+    "split": "caution_test",
+    "note": "plausible routine billing confirmation vs. a soft lead-in to a payment scam; not enough evidence to call HIGH"
+  },
+  {
+    "conversation_id": "conv_1701",
+    "scenario": "emergency_relative_scam",
+    "scenario_family": "emergency_relative_scam",
+    "context_type": "unseen_scenario",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Grandma, I'm in trouble and I need you to wire money right now. Please don't tell mom and dad."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "payment_or_transfer_request",
+    "risk_signals": [
+      "payment_or_transfer_request",
+      "urgency_time_pressure",
+      "secrecy_isolation_request"
+    ],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1702",
+    "scenario": "family_checkin_benign",
+    "scenario_family": "benign_life_unseen",
+    "context_type": "unseen_scenario",
+    "difficulty": "easy",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Hey, just letting you know I landed safely, talk to you tomorrow."
+      }
+    ],
+    "label": "LOW",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "unseen_test"
+  },
+  {
+    "conversation_id": "conv_1801",
+    "scenario": "ambiguous_verification_1",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Can you confirm your account number so I can process the refund?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "sensitive_information_request",
+    "risk_signals": [
+      "sensitive_information_request"
+    ],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1802",
+    "scenario": "ambiguous_verification_2",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "hard",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I'm calling from IT, are you currently logged into the portal?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1803",
+    "scenario": "ambiguous_verification_3",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "This is a courtesy call about your recent purchase, can you confirm the delivery address?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "benign",
+    "risk_signals": [],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1804",
+    "scenario": "ambiguous_verification_4",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I wanted to check if you still bank with us, can you confirm your branch?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "bank_impersonation",
+    "risk_signals": [
+      "bank_impersonation"
+    ],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1805",
+    "scenario": "ambiguous_verification_5",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Before I continue, can I get your policy number please?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "personal_data_request",
+    "risk_signals": [],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1806",
+    "scenario": "ambiguous_verification_6",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "We're updating our records, could you confirm your registered mobile number?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "personal_data_request",
+    "risk_signals": [],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1807",
+    "scenario": "ambiguous_verification_7",
+    "scenario_family": "ambiguous_verification",
+    "context_type": "ambiguous",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "I need to confirm you're the account holder, what's your customer ID?"
+      }
+    ],
+    "label": "CAUTION",
+    "intent": "personal_data_request",
+    "risk_signals": [],
+    "split": "caution_test"
+  },
+  {
+    "conversation_id": "conv_1901",
+    "scenario": "tech_support_remote_install",
+    "scenario_family": "tech_support",
+    "context_type": "unseen_scenario",
+    "difficulty": "medium",
+    "turns": [
+      {
+        "turn_id": 1,
+        "speaker": "caller",
+        "text": "Install this remote access app so I can fix the antivirus issue on your computer."
+      }
+    ],
+    "label": "HIGH",
+    "intent": "remote_access_request",
+    "risk_signals": [
+      "remote_access_request",
+      "software_installation_request"
+    ],
+    "split": "unseen_test",
+    "note": "semantic pair with conv_1202 benign 'help me install this app for photo editing' -- same verb, remote-access-to-stranger's-machine vs self-directed install"
+  }
+]
