@@ -46,7 +46,7 @@ import numpy as np
 
 from audio_features import extract_feature_vector, load_wav
 
-DEFAULT_MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "deepfake_model.pkl")
+DEFAULT_MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "deepfake_model.pkl")
 CLASSIFICATION_THRESHOLD = 0.5
 
 

@@ -29,8 +29,7 @@ def build_training_matrix(signals, labels, sample_rate):
     return X, y
 
 
-DEFAULT_SAVE_PATH = os.path.join(os.path.dirname(__file__), "..", "deepfake_model.pkl")
-
+DEFAULT_SAVE_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "deepfake_model.pkl")
 
 def train(save_path: str = DEFAULT_SAVE_PATH, n_per_class: int = 80, seed: int = 42):
     signals, labels, sr = generate_dataset(n_per_class=n_per_class, seed=seed)
