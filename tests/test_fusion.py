@@ -11,7 +11,7 @@ def make_payload(deepfake_score, nlp_score, signals=None):
     return {
         "deepfake_score": deepfake_score,
         "classification": (
-            "SYNTHETIC" if deepfake_score >= 0.5 else "REAL"
+            "SYNTHETIC" if isinstance(deepfake_score, (int, float)) and deepfake_score >= 0.5 else "REAL"
         ),
         "nlp": {
             "risk_score": nlp_score,
