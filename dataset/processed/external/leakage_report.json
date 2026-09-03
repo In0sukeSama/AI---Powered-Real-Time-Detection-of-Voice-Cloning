@@ -1,0 +1,10 @@
+{
+  "threshold_used": 0.6,
+  "threshold_rationale": "Exploratory/conservative threshold for longer external texts vs SIH's shorter records; flags candidates for human review rather than asserting definitive duplication.",
+  "external_records_checked": 260,
+  "sih_records_compared": 74,
+  "exact_matches": [],
+  "near_matches": [],
+  "frozen_overlaps": [],
+  "recommended_exclusions": []
+}

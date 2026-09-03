@@ -1,0 +1,25 @@
+{
+  "method": "Token-set Jaccard similarity on normalized text (lowercased, bracket-placeholders stripped, punctuation stripped). Thresholds chosen empirically after inspecting the actual similarity distribution -- see notes.",
+  "max_similarity_found_overall": 0.40,
+  "max_similarity_example": {
+    "sih_conversation_id": "conv_0103",
+    "sih_split": "train",
+    "external_label": "scam",
+    "external_text_snippet": "Congratulations! You have won a lottery or sweepstakes prize worth a significant amount of money. To..."
+  },
+  "notes": [
+    "No exact duplicates found between external dataset and SIH dataset.",
+    "No near-duplicates at Jaccard>=0.85 (the threshold used for SIH-internal near-dup checks) -- the highest similarity found anywhere was 0.40.",
+    "0.40 reflects shared generic scam vocabulary ('congratulations', 'won', 'lottery', 'prize', 'claim') rather than a paraphrase of the same authored sentence -- this is topical overlap, not leakage in the sense of memorizable duplicate content.",
+    "A lower exploratory threshold (Jaccard>=0.25) was used only to characterize WHERE topical overlap concentrates, not to flag actual leakage. Results below are for that exploratory pass and should be read as 'shares vocabulary with', not 'duplicates'."
+  ],
+  "exploratory_topical_overlap_by_frozen_split_jaccard_0.25": {
+    "test": 39,
+    "context_test": 12,
+    "caution_test": 16,
+    "unseen_test": 6,
+    "paraphrase_test": 0,
+    "hard_negative_test": 0
+  },
+  "conclusion": "No exact or near-duplicate contamination of the frozen SIH evaluation sets. Topical vocabulary overlap (same scam categories described in different words) exists and is expected -- both datasets cover bank/OTP and lottery scams, which is a shared domain, not a leak. No specific external records need to be excluded from training on leakage grounds; the exclusion criteria that DO apply (label ambiguity, scenario redundancy, template artifacts) are covered in audit_report.md."
+}

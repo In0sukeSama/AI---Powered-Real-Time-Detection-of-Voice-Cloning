@@ -101,12 +101,65 @@ def run_checks(data):
     return report
 
 
+def audit_external_dataset(path):
+    """
+    Phase 9 addition: quality checks for the curated_external_v1.json schema,
+    which differs from the SIH schema (id/text/label/scenario_family/source_*
+    instead of conversation_id/turns/split). Additive -- does not touch the
+    SIH-schema functions above.
+    """
+    data = load(path)
+    report = []
+
+    required = {"id", "text", "label", "scenario_family", "source_type",
+                "source_file", "source_record", "source_label",
+                "curation_reason", "indirect_request_candidate", "raw_text"}
+    missing = [(r.get("id", "?"), required - set(r.keys())) for r in data if required - set(r.keys())]
+    report.append(("Missing fields", missing if missing else "none"))
+
+    bad_labels = [r["id"] for r in data if r["label"] not in VALID_LABELS]
+    report.append(("Invalid labels", bad_labels if bad_labels else "none"))
+
+    empty_text = [r["id"] for r in data if not r["text"].strip()]
+    report.append(("Empty text", empty_text if empty_text else "none"))
+
+    ids = [r["id"] for r in data]
+    dup_ids = [i for i, c in Counter(ids).items() if c > 1]
+    report.append(("Duplicate IDs", dup_ids if dup_ids else "none"))
+
+    texts = [r["text"].strip().lower() for r in data]
+    dup_texts = {t: c for t, c in Counter(texts).items() if c > 1}
+    report.append(("Duplicate texts", dup_texts if dup_texts else "none"))
+
+    provenance = Counter(r["source_type"] for r in data)
+    report.append(("source_type distribution", dict(provenance)))
+    unexpected_source_types = [r["id"] for r in data
+                                if r["source_type"] != "external_generated_unknown_source"]
+    report.append(("Records with unexpected source_type", unexpected_source_types or "none"))
+
+    report.append(("Label distribution", dict(Counter(r["label"] for r in data))))
+
+    by_label = defaultdict(Counter)
+    for r in data:
+        by_label[r["label"]][r["scenario_family"]] += 1
+    report.append(("Scenario distribution by class", {k: dict(v) for k, v in by_label.items()}))
+
+    return report
+
+
 if __name__ == "__main__":
     import sys
     path = sys.argv[1] if len(sys.argv) > 1 else "dataset_pilot.json"
-    data = load(path)
-    print(f"Total records: {len(data)}\n")
-    for title, result in run_checks(data):
-        print(f"--- {title} ---")
-        print(result)
-        print()
+    if "curated_external" in path:
+        print(f"Detected external-schema dataset: {path}\n")
+        for title, result in audit_external_dataset(path):
+            print(f"--- {title} ---")
+            print(result)
+            print()
+    else:
+        data = load(path)
+        print(f"Total records: {len(data)}\n")
+        for title, result in run_checks(data):
+            print(f"--- {title} ---")
+            print(result)
+            print()

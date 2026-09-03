@@ -1,0 +1,98 @@
+{
+  "manifest_version": "1.0.0",
+  "description": "Documents the PROPOSED combined-dataset design for Milestone 4B. This is a design/tracking artifact, not an executed merged training file. No merged dataset has been created yet -- pending review.",
+  "timestamp": "2026-09-03",
+
+  "source_datasets": {
+    "sih": {
+      "file": "dataset/dataset_v2.json",
+      "total_records": 74,
+      "status": "FROZEN -- unmodified by this milestone",
+      "splits": {
+        "train": 7, "validation": 4, "test": 20, "paraphrase_test": 8,
+        "hard_negative_test": 6, "context_test": 10, "unseen_test": 9, "caution_test": 10
+      }
+    },
+    "external_curated_v1": {
+      "file": "dataset/processed/external/curated_external_v1.json",
+      "total_records": 260,
+      "class_distribution": {"HIGH": 120, "CAUTION": 40, "LOW": 100},
+      "provenance": "external_generated_unknown_source (100% of records -- no source in this file claims verified real-world provenance)",
+      "known_limitations": [
+        "single-turn only, no multi-turn/context data",
+        "length confound not resolved: HIGH mean 391.6 chars vs LOW 199.7 vs CAUTION 209.7 (see audit report)",
+        "scenario_family tags noisy -- at least 4 confirmed mistagged records under tech_support (EXT-H-107..109, EXT-H-111)",
+        "13.3% (16/120) of HIGH records read as telemarketing/spam rather than social-engineering (see semantic_conflict_report.md)",
+        "CAUTION is curator-assigned, not source-provided",
+        "45% of LOW and some HIGH/CAUTION records tagged scenario_family='other' (uninformative)"
+      ]
+    }
+  },
+
+  "leakage_check": {
+    "method": "token-set Jaccard similarity, normalized text",
+    "threshold_used": 0.60,
+    "exact_matches_found": 0,
+    "near_matches_found": 0,
+    "frozen_split_overlaps_found": 0,
+    "max_similarity_observed": 0.303,
+    "conclusion": "No leakage detected against any SIH split, frozen or not. See leakage_report.json for full method."
+  },
+
+  "provenance_policy": {
+    "required_field": "source_type",
+    "allowed_values": ["SIH", "external_generated_unknown_source"],
+    "additional_fields_retained_for_external_records": ["source_file", "source_record", "source_label", "curation_reason"],
+    "rule": "source_type (and related provenance fields) must NEVER be passed to the classifier as an input feature. Retained only for experiment tracking, ablation, debugging, and reproducibility."
+  },
+
+  "recommended_exclusion_set_for_experiment_c": {
+    "criteria": "Records matching telemarketing/spam-style patterns with no co-occurring social-engineering pattern, OR confirmed scenario_family mistagging documented in semantic_conflict_report.md",
+    "excluded_ids": [
+      "EXT-H-007", "EXT-H-009", "EXT-H-016", "EXT-H-037", "EXT-H-039", "EXT-H-045",
+      "EXT-H-047", "EXT-H-107", "EXT-H-108", "EXT-H-109", "EXT-H-110", "EXT-H-112",
+      "EXT-H-113", "EXT-H-114", "EXT-H-115", "EXT-H-117", "EXT-H-111"
+    ],
+    "excluded_count": 17,
+    "note": "This list comes from a narrow keyword heuristic plus 1 manually-confirmed mistag (EXT-H-111) -- treat as a starting point for human review, not a final, exhaustive determination. Remaining HIGH pool after exclusion: 103."
+  },
+
+  "proposed_experiment_configurations": {
+    "experiment_a_sih_only": {
+      "train": "SIH train split only (7 records)",
+      "validation": "SIH validation split only (4 records)",
+      "test": "all SIH frozen splits, untouched",
+      "purpose": "Reproduce/extend the existing rule-baseline comparison point with a learned model trained on SIH data alone. Expected to be data-starved given train=7."
+    },
+    "experiment_b_sih_plus_all_external": {
+      "train": "SIH train (7) + all 260 curated external records, MINUS zero records (no leakage exclusions needed)",
+      "validation": "SIH validation split only (4 records) -- see validation-size caveat below",
+      "test": "all SIH frozen splits, untouched",
+      "purpose": "Test whether raw external volume improves generalization, accepting the known length-confound and spam-mislabel risks as-is."
+    },
+    "experiment_c_sih_plus_filtered_external": {
+      "train": "SIH train (7) + curated external MINUS the 17-record exclusion set above (243 records)",
+      "validation": "SIH validation split only (4 records)",
+      "test": "all SIH frozen splits, untouched",
+      "purpose": "Test whether curation quality (removing spam-like/mistagged records) matters more than raw volume -- the actual research question we care about."
+    },
+    "shared_constraint": "All three experiments evaluate on the EXACT SAME frozen SIH test/paraphrase_test/hard_negative_test/context_test/unseen_test/caution_test splits. source_type is retained in metadata for all training records but never exposed as a model input feature."
+  },
+
+  "validation_size_caveat": {
+    "issue": "SIH validation split has only 4 records, all LOW, 3 scenario families -- insufficient alone for reliable model selection/early-stopping across three classes.",
+    "options_not_yet_decided": [
+      "A. Use validation as-is and accept high-variance model-selection decisions (documented limitation, no contamination risk).",
+      "B. Carve out a SEPARATE validation-only slice from curated external data (e.g. stratified by class), clearly source-tagged, used ONLY for model selection -- never for final reported metrics, which still come solely from frozen SIH test sets.",
+      "C. Use k-fold cross-validation over SIH train+validation combined (11 records) for model selection, keeping frozen test sets untouched."
+    ],
+    "recommendation": "Leaning towards Option B (external-sourced validation-only slice) since it doesn't touch frozen SIH data and directly addresses the size problem, but this needs your sign-off before implementation since it changes what 'validation' means for this experiment."
+  },
+
+  "grouping_for_near_duplicate_protection": {
+    "issue": "Some external records share template openings (e.g. 'this is the representative from the...', 59 occurrences) -- if such near-duplicate-structure records were split across train and validation, validation would leak train's surface patterns.",
+    "proposed_rule": "Group external records by normalized opening-skeleton (first 6 words, alphanumeric-only) before any train/validation assignment; assign entire skeleton-groups to one side only. Not yet implemented -- proposed for review."
+  },
+
+  "status": "DESIGN ONLY -- no merged training file created. No model trained. Awaiting review before Phase 10 execution."
+}
