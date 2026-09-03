@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Deepfake detection datasets and model artifacts
+deepfake_detection/data/
+deepfake_detection/models/
+
+# Audio/data files
+*.wav
+*.flac
+*.mp3
+*.tar.gz
+
+# Trained model files
+*.pkl
+*.joblib
