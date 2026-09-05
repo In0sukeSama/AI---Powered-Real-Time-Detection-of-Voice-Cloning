@@ -1,0 +1,168 @@
+# ============================================================
+# Python
+# ============================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ============================================================
+# Environments
+# ============================================================
+
+.env
+.envrc
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ============================================================
+# Jupyter / IDEs
+# ============================================================
+
+.ipynb_checkpoints/
+.idea/
+.vscode/
+
+# ============================================================
+# Django / Flask / Scrapy
+# ============================================================
+
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.scrapy/
+
+# ============================================================
+# Documentation / build tools
+# ============================================================
+
+docs/_build/
+.pybuilder/
+target/
+.site/
+
+# ============================================================
+# Type checkers / linters
+# ============================================================
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ============================================================
+# Package managers
+# ============================================================
+
+.pdm-python
+.pdm-build/
+.pypirc
+
+# ============================================================
+# Temporary files
+# ============================================================
+
+tempCodeRunnerFile.py
+*.tmp
+*.temp
+
+# ============================================================
+# SIH PROJECT - DATASETS
+# ============================================================
+
+# Local deepfake datasets
+deepfake_detection/data/
+
+# ============================================================
+# SIH PROJECT - PERSONAL / DEMO AUDIO
+# ============================================================
+
+# Do not upload personal recordings
+deepfake_detection/demo/*.wav
+deepfake_detection/demo/*.mp3
+deepfake_detection/demo/*.m4a
+
+# ============================================================
+# SIH PROJECT - DEVELOPMENT BACKUPS
+# ============================================================
+
+deepfake_detection/src/*_backup.py
+deepfake_detection/models/*_backup.pkl
+
+# ============================================================
+# Local secrets / credentials
+# ============================================================
+
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# ============================================================
+# Streamlit
+# ============================================================
+
+.streamlit/secrets.toml
+
+# ============================================================
+# OS generated files
+# ============================================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
